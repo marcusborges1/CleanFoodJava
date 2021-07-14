@@ -90,7 +90,6 @@ from them. I'll list examples bellow for some cases:
   - **Catalog:** products (food) listing, prices
   - **Order:** products chosen (by a customer), address to deliver
   
-
 - **Critical Business Rules**
   - Customer: place an order for a store, pay an order
   - Store: confirm customer's order, pass the prepared order to a driver
@@ -98,8 +97,35 @@ from them. I'll list examples bellow for some cases:
 
 ### CleanFood first three use cases
 - Customer orders food to a store
-  - Input: wip
-  - Output: wip
-  - Primary Course: wip
+  - Input: customer's address, products list from catalog, store identification, payment info
+  - Output: Same info for readback + notify store about the order
+  - Primary Course: 
+    1. Validate products from store catalog
+    2. Validate payment info
+    3. If products are available in store and payment info are valid: 
+        - Charge the customer 
+        - Create order
+        - Notify store about the order
+    4. Else 
+        - Returns failure feedback message
+
+
+- Store confirms customer's order 
+  - Input: order identification, order confirmation (true/false) 
+  - Output: Same info for readback
+  - Primary Course: 
+    1. Accept order confirmation
+    2. If store accepts order
+        - Update order status to accepted
+        - notify the customer about order
+    3. Else
+        - Update order status to canceled
+        - Notify customer
+        - Uncharge the customer
   
-wip
+
+- Store notifies driver about ready order
+  - Input: 
+  - Output:
+  - Primary Course:
+  
